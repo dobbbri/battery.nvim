@@ -13,38 +13,19 @@ local config = require("battery.config")
 local log = L.new({ plugin = "battery" })
 
 -- https://www.nerdfonts.com/cheat-sheet
-local no_battery_icon = "" -- "ﲾ"
--- local charging_battery_icons = {
---   { "", 20 },
---   { "", 30 },
---   { "", 40 },
---   { "", 60 },
---   { "", 80 },
---   { "", 90 },
---   { "", 100 },
--- }
-
-local horizontal_battery_icons = {
-  { "", 5 },
-  { "", 25 },
-  { "", 50 },
-  { "", 75 },
-  { "", 100 },
-}
-
-local plugged_icon = "ﮣ"
-local unplugged_icon = "ﮤ"
+local no_battery_icon = "󰂑 "
+local plugged_icon = "󱐋 "
 local discharging_battery_icons = {
-  { "", 10 },
-  { "", 20 },
-  { "", 30 },
-  { "", 40 },
-  { "", 50 },
-  { "", 60 },
-  { "", 70 },
-  { "", 80 },
-  { "", 90 },
-  { "", 100 },
+  { "󰁺 ", 10 },
+  { "󰁻 ", 20 },
+  { "󰁼 ", 30 },
+  { "󰁽 ", 40 },
+  { "󰁾 ", 50 },
+  { "󰁿 ", 60 },
+  { "󰂀 ", 70 },
+  { "󰂁 ", 80 },
+  { "󰂂 ", 90 },
+  { "󰁹 ", 100 },
 }
 
 -- TODO maybe store the update time here?
@@ -151,10 +132,6 @@ local function discharging_battery_icon_for_percent(p)
   return icon_for_percentage(p, discharging_battery_icons)
 end
 
-local function horizontal_battery_icon_for_percent(p)
-  return icon_for_percentage(p, horizontal_battery_icons)
-end
-
 local function get_status_line()
   if battery_status.battery_count == nil then
     return ""
@@ -181,12 +158,7 @@ local function get_status_line()
         percent = " " .. battery_percent .. "%%"
       end
 
-      local icon
-      if config.current.vertical_icons == true then
-        icon = discharging_battery_icon_for_percent(battery_percent)
-      else
-        icon = horizontal_battery_icon_for_percent(battery_percent)
-      end
+      local icon = discharging_battery_icon_for_percent(battery_percent)
 
       local message = ""
       if config.show_message_low_battery == true then
