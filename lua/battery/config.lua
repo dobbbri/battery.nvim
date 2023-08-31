@@ -9,10 +9,11 @@ local M = {}
 local default_config = {
   update_rate_seconds = 30,
   show_status_when_no_battery = true,
-  show_plugged_icon = true,
-  show_unplugged_icon = true,
+  show_plugged_icon = false,
+  show_unplugged_icon = false,
   show_percent = true,
-  vertical_icons = true,
+  vertical_icons = false,
+  show_message_low_battery = true,
   multiple_battery_selection = 1,
 }
 

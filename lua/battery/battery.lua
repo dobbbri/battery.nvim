@@ -157,7 +157,7 @@ end
 
 local function get_status_line()
   if battery_status.battery_count == nil then
-    return ""
+    return ""
   else
     if battery_status.battery_count == 0 then
       if config.current.show_status_when_no_battery == true then
@@ -188,7 +188,14 @@ local function get_status_line()
         icon = horizontal_battery_icon_for_percent(battery_percent)
       end
 
-      return icon .. plug_icon .. percent
+      local message = ""
+      if config.show_message_low_battery == true then
+        if not ac_power and percent <= 25 then
+          message = " | Conecte o carregador"
+        end
+      end
+
+      return icon .. plug_icon .. percent .. message
     end
   end
 end
