@@ -8,8 +8,6 @@ local M = {}
 
 local default_config = {
   update_rate_seconds = 30,
-  show_status_when_no_battery = true,
-  show_percent = true,
   show_message_low_battery = true,
   low_battery = 25,
   multiple_battery_selection = 1,
