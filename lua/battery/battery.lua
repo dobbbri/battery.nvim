@@ -13,8 +13,8 @@ local config = require("battery.config")
 local log = L.new({ plugin = "battery" })
 
 -- https://www.nerdfonts.com/cheat-sheet
-local no_battery_icon = "󰂎"
-local plugged_icon = "󱐋"
+local no_battery_icon = "󰂎 "
+local plugged_icon = "󱐋 "
 local discharging_battery_icons = {
   { "󰁺 ", 10 },
   { "󰁻 ", 20 },
