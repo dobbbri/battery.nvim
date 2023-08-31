@@ -149,8 +149,6 @@ local function get_status_line()
       local plug_icon = ""
       if ac_power and config.current.show_plugged_icon then
         plug_icon = plugged_icon
-      elseif not ac_power and config.current.show_unplugged_icon then
-        plug_icon = unplugged_icon
       end
 
       local percent = ""
@@ -167,7 +165,7 @@ local function get_status_line()
         end
       end
 
-      return icon .. plug_icon .. percent .. message
+      return plug_icon .. icon .. percent .. message
     end
   end
 end
