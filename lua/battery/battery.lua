@@ -13,19 +13,19 @@ local config = require("battery.config")
 local log = L.new({ plugin = "battery" })
 
 -- https://www.nerdfonts.com/cheat-sheet
-local no_battery_icon = "󰂑 "
-local plugged_icon = "󱐋 "
+local no_battery_icon = "󰂎"
+local plugged_icon = "󱐋"
 local discharging_battery_icons = {
-  { "󰁺 ", 10 },
-  { "󰁻 ", 20 },
-  { "󰁼 ", 30 },
-  { "󰁽 ", 40 },
-  { "󰁾 ", 50 },
-  { "󰁿 ", 60 },
-  { "󰂀 ", 70 },
-  { "󰂁 ", 80 },
-  { "󰂂 ", 90 },
-  { "󰁹 ", 100 },
+  { "󰁺", 10 },
+  { "󰁻", 20 },
+  { "󰁼", 30 },
+  { "󰁽", 40 },
+  { "󰁾", 50 },
+  { "󰁿", 60 },
+  { "󰂀", 70 },
+  { "󰂁", 80 },
+  { "󰂂", 90 },
+  { "󰁹", 100 },
 }
 
 -- TODO maybe store the update time here?
@@ -137,17 +137,13 @@ local function get_status_line()
     return ""
   else
     if battery_status.battery_count == 0 then
-      if config.current.show_status_when_no_battery == true then
-        return no_battery_icon
-      else
-        return ""
-      end
+      return no_battery_icon
     else
       local ac_power = battery_status.ac_power
       local battery_percent = battery_status.percent_charge_remaining
 
       local plug_icon = ""
-      if ac_power and config.current.show_plugged_icon then
+      if ac_power then
         plug_icon = plugged_icon
       end
 
@@ -160,7 +156,7 @@ local function get_status_line()
 
       local message = ""
       if config.show_message_low_battery == true then
-        if not ac_power and percent <= 25 then
+        if not ac_power and percent <= config.low_battery then
           message = " | Conecte o carregador"
         end
       end
