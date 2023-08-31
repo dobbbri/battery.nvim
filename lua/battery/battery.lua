@@ -153,7 +153,7 @@ local function get_status_line()
 
       local percent = ""
       if config.current.show_percent == true then
-        percent = " " .. battery_percent .. "%%"
+        percent = battery_percent .. "%%"
       end
 
       local icon = discharging_battery_icon_for_percent(battery_percent)
