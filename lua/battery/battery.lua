@@ -30,8 +30,8 @@ local discharging_battery_icons = {
 
 -- TODO maybe store the update time here?
 local battery_status = {
-  percent_charge_remaining = nil,
-  battery_count = nil,
+  percent_charge_remaining = 0,
+  battery_count = 0,
   ac_power = nil,
 }
 
@@ -133,33 +133,29 @@ local function discharging_battery_icon_for_percent(p)
 end
 
 local function get_status_line()
-  if battery_status.battery_count == nil then
-    return ""
+  if battery_status.battery_count == 0 then
+    return no_battery_icon
   else
-    if battery_status.battery_count == 0 then
-      return no_battery_icon
-    else
-      local ac_power = battery_status.ac_power
-      local battery_percent = battery_status.percent_charge_remaining
+    local ac_power = battery_status.ac_power
+    local battery_percent = battery_status.percent_charge_remaining
 
-      local plug_icon = ""
-      if ac_power then
-        plug_icon = plugged_icon
-      end
-
-      local percent = battery_percent .. "%%"
-
-      local icon = discharging_battery_icon_for_percent(battery_percent)
-
-      local message = ""
-      if config.show_message_low_battery == true then
-        if not ac_power and percent <= config.low_battery then
-          message = " | Conecte o carregador"
-        end
-      end
-
-      return plug_icon .. icon .. percent .. message
+    local plug_icon = ""
+    if ac_power then
+      plug_icon = plugged_icon
     end
+
+    local percent = battery_percent .. "%%"
+
+    local icon = discharging_battery_icon_for_percent(battery_percent)
+
+    local message = ""
+    if config.show_message_low_battery == true then
+      if not ac_power and battery_percent <= config.low_battery then
+        message = " | Conecte o carregador"
+      end
+    end
+
+    return plug_icon .. icon .. percent .. message
   end
 end
 
