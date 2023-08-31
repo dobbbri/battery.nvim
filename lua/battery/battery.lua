@@ -16,16 +16,16 @@ local log = L.new({ plugin = "battery" })
 local no_battery_icon = "󰂎"
 local plugged_icon = "󱐋"
 local discharging_battery_icons = {
-  { "󰁺", 10 },
-  { "󰁻", 20 },
-  { "󰁼", 30 },
-  { "󰁽", 40 },
-  { "󰁾", 50 },
-  { "󰁿", 60 },
-  { "󰂀", 70 },
-  { "󰂁", 80 },
-  { "󰂂", 90 },
-  { "󰁹", 100 },
+  { "󰁺 ", 10 },
+  { "󰁻 ", 20 },
+  { "󰁼 ", 30 },
+  { "󰁽 ", 40 },
+  { "󰁾 ", 50 },
+  { "󰁿 ", 60 },
+  { "󰂀 ", 70 },
+  { "󰂁 ", 80 },
+  { "󰂂 ", 90 },
+  { "󰁹 ", 100 },
 }
 
 -- TODO maybe store the update time here?
